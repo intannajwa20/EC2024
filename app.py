@@ -64,9 +64,9 @@ else:
 
 def plot_gender_distribution(df):
     """Visualization 1: Pie Chart of Gender Distribution."""
-    if COLUMNS['GENDER'] not in df.columns: return
+    if Columns['Gender'] not in df.columns: return
     
-    gender_counts = df[COLUMNS['GENDER']].value_counts().reset_index()
+    gender_counts = df[columns['Gender']].value_counts().reset_index()
     gender_counts.columns = ['Gender', 'Count']
 
     fig = px.pie(
@@ -82,9 +82,9 @@ def plot_gender_distribution(df):
 
 def plot_rank_distribution(df):
     """Visualization 2: Bar Chart of Faculty Rank Counts."""
-    if COLUMNS['RANK'] not in df.columns: return
+    if Columns['Rank'] not in df.columns: return
 
-    rank_counts = df[COLUMNS['RANK']].value_counts().reset_index()
+    rank_counts = df[Columns['Rank']].value_counts().reset_index()
     rank_counts.columns = ['Rank', 'Count']
     rank_counts = rank_counts.sort_values('Count', ascending=False) # Sort by count
 
@@ -101,10 +101,10 @@ def plot_rank_distribution(df):
 
 def plot_gender_vs_rank(df):
     """Visualization 3: Grouped Bar Chart of Rank by Gender."""
-    if COLUMNS['RANK'] not in df.columns or COLUMNS['GENDER'] not in df.columns: return
+    if Columns['Rank'] not in df.columns or columns['Gender'] not in df.columns: return
 
     # Count occurrences of Rank segmented by Gender
-    df_counts = df.groupby([COLUMNS['RANK'], COLUMNS['GENDER']]).size().reset_index(name='Count')
+    df_counts = df.groupby([Columns['Rank'], Columns['Gender']]).size().reset_index(name='Count')
     df_counts.columns = ['Rank', 'Gender', 'Count']
 
     fig = px.bar(
@@ -121,14 +121,14 @@ def plot_gender_vs_rank(df):
 
 def plot_experience_histogram(df):
     """Visualization 4: Histogram of Years of Service/Experience."""
-    if COLUMNS['EXPERIENCE'] not in df.columns: return
+    if Columns['Experience'] not in df.columns: return
 
     # Drop rows where 'Years_of_Service' might be NaN after conversion
-    df_clean = df.dropna(subset=[COLUMNS['EXPERIENCE']])
+    df_clean = df.dropna(subset=[columns['Experience']])
 
     fig = px.histogram(
         df_clean,
-        x=COLUMNS['EXPERIENCE'],
+        x=columns['Experience'],
         title='4. Distribution of Years of Service (Experience)',
         nbins=20, # Number of bins for the histogram
         marginal="box", # Adds a box plot on top for summary statistics
@@ -140,9 +140,9 @@ def plot_experience_histogram(df):
 
 def plot_department_distribution(df):
     """Visualization 5: Bar Chart of Faculty Department Counts."""
-    if COLUMNS['DEPARTMENT'] not in df.columns: return
+    if Columns['Department'] not in df.columns: return
 
-    dept_counts = df[COLUMNS['DEPARTMENT']].value_counts().reset_index()
+    dept_counts = df[columns['Department']].value_counts().reset_index()
     dept_counts.columns = ['Department', 'Count']
     dept_counts = dept_counts.sort_values('Count', ascending=True) # Sorted for a horizontal bar chart
 
