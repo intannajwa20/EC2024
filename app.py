@@ -164,7 +164,7 @@ def main():
     st.markdown("---")
 
     # Load data
-    law_df = load_data(DATA_URL)
+    law_df = load_data(https://raw.githubusercontent.com/intannajwa20/EC2024/refs/heads/main/law_faculty_data.csv)
 
     if not law_df.empty:
         # Display Data Head
